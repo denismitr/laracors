@@ -1,4 +1,5 @@
-# __LARACORS__ - Laravel Cross Origin Resource Sharing Middleware
+# __LARACORS__
+## Laravel Cross Origin Resource Sharing Middleware
 This middleware is designed specifically for the Laravel framework and __RESTful APIs__ builded with it.
 It allows requests made from frontends of other apps.
 
@@ -13,8 +14,10 @@ __Denis Mitrofanov__
 Use composer to install the package:
 
 ```bash
-composer require denismitr/cors
+composer require denismitr/laracors
 ```
+
+### Laravel
 
 Include in your `app/Http/Kernel.php` to the appropriate section
 (all requests if all your routes are API or named middleware + API middleware group to make it work for every api route
@@ -23,17 +26,18 @@ or just named middleware):
 Global middleware
 -------
 ```php
-/**
- * The application's global HTTP middleware stack.
- *
- * These middleware are run during every request to your application.
- *
- * @var array
- */
 protected $middleware = [
     ...
-    \Denismitr\Cors\CorsMiddleware::class
+    \Denismitr\Laracors\Cors::class
 ];
+
+Publish the config file:
+```php
+php artisan vendor:publish  --provider="Denismitr\Laracors\LaravelCorsServiceProvider"
+```
+
+Edit the config file to your needs.
+
 ```
 Named middleware
 ---------------
@@ -47,7 +51,7 @@ Named middleware
  */
 protected $routeMiddleware = [
     ...
-    'cors' => \Denismitr\Cors\CorsMiddleware::class,
+    'cors' => \Denismitr\Laracors\Cors::class,
 ];
 
 /**
@@ -65,4 +69,19 @@ protected $middlewareGroups = [
         'cors'
     ],
 ];
+```
+
+## Lumen
+
+Add the following lines to ```bootstrap/app.php```:
+
+```php
+$app->register('Denismitr\Laracors\LumenCorsServiceProvider');
+```
+
+```php
+$app->middleware([
+    .....
+    'Denismitr\Laracors\LumenCorsServiceProvider',
+]);
 ```
