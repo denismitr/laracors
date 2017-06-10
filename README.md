@@ -88,6 +88,6 @@ $app->register('\Denismitr\Laracors\LumenCorsServiceProvider');
 ```php
 $app->middleware([
     .....
-    '\Denismitr\Laracors\LumenCorsServiceProvider',
+    '\Denismitr\Laracors\Cors',
 ]);
 ```
