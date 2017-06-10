@@ -1,11 +1,13 @@
 <?php
 
-namespace Denismitr\Cors;
+namespace Denismitr\Laracors;
 
 use Closure;
 
-class CorsMiddleware
+class Cors
 {
+    const CONFIG_KEY = 'laracors';
+
     protected $allAllowedMethods = [
         'HEAD', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'
     ];
@@ -90,15 +92,17 @@ class CorsMiddleware
 
     protected function configure()
     {
-        $allowedOrigins = config('cors.allowed_origins');
+        $config = config(self::CONFIG_KEY);
+
+        $allowedOrigins = $config['allowed_origins'] ?? null;
 
         $this->allowedOrigins = $allowedOrigins ?: $this->allowedOrigins;
 
-        $allAllowedMethods = config('cors.all_allowed_methods');
+        $allAllowedMethods = $config['all_allowed_methods'] ?? null;
 
         $this->allAllowedMethods = $allAllowedMethods ?: $this->allAllowedMethods;
 
-        $allowedHeaders = config('cors.allowed_headers');
+        $allowedHeaders = $config['allowed_headers'] ?? null;
 
         $this->allowedHeaders = $allowedHeaders ?: $this->allowedHeaders;
     }

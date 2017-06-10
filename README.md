@@ -1,4 +1,4 @@
-# Laravel Cross Origin Resource Sharing Middleware
+# __LARACORS__ - Laravel Cross Origin Resource Sharing Middleware
 This middleware is designed specifically for the Laravel framework and __RESTful APIs__ builded with it.
 It allows requests made from frontends of other apps.
 

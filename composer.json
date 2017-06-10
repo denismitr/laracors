@@ -1,5 +1,5 @@
 {
-    "name": "denismitr/etag",
+    "name": "denismitr/laracors",
     "description": "Cross Origin Resource Sharing Middleware for Laravel or Lumen",
     "license": "MIT",
     "keywords": ["laravel", "lumen", "cors", "middleware", "http"],
@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Denismitr\\Cors\\": "src/"
+            "Denismitr\\Laracors\\": "src/"
         }
     },
     "autoload-dev": {

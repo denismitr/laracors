@@ -2,10 +2,9 @@
 
 namespace Tests;
 
-use Denismitr\Cors\CorsMiddleware;
+use Denismitr\Laracors\Cors;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Mockery as m;
 
 class CorsMiddlewareTest extends \Orchestra\Testbench\TestCase
 {
@@ -15,7 +14,7 @@ class CorsMiddlewareTest extends \Orchestra\Testbench\TestCase
     {
         $request = $this->mockRequest("POST", 'http://example.com');
 
-        $cors = new CorsMiddleware;
+        $cors = new Cors;
 
         $response = new Response;
 
@@ -41,7 +40,7 @@ class CorsMiddlewareTest extends \Orchestra\Testbench\TestCase
     {
         $request = $this->mockRequest("OPTIONS", 'http://example.com');
 
-        $cors = new CorsMiddleware;
+        $cors = new Cors;
 
         $response = $cors->handle($request, function()  {});
 
@@ -63,7 +62,7 @@ class CorsMiddlewareTest extends \Orchestra\Testbench\TestCase
     {
         $request = $this->mockRequest("POST", 'http://example.com');
 
-        $cors = new CorsMiddleware;
+        $cors = new Cors;
 
         $response = new Response;
 
@@ -89,7 +88,7 @@ class CorsMiddlewareTest extends \Orchestra\Testbench\TestCase
     {
         $request = $this->mockRequest("POST", 'http://example.com');
 
-        $cors = new CorsMiddleware;
+        $cors = new Cors;
 
         $response = new Response;
 
