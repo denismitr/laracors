@@ -24,7 +24,7 @@ Add to ```config/app.php```:
 ```php
 'providers' => [
     ...
-    Denismitr\Laracors\Cors::class,
+    \Denismitr\Laracors\LaravelCorsServiceProvider::class,
 ],
 ```
 
@@ -37,7 +37,7 @@ Global middleware
 ```php
 protected $middleware = [
     ...
-    \Denismitr\Laracors\LaravelCorsServiceProvider::class
+    \Denismitr\Laracors\Cors::class
 ];
 ```
 
