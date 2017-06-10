@@ -1,7 +1,7 @@
 # __LARACORS__
 ## Laravel Cross Origin Resource Sharing Middleware
-This middleware is designed specifically for the Laravel framework and __RESTful APIs__ builded with it.
-It allows requests made from frontends of other apps.
+This middleware is designed specifically for the Laravel and Lumen frameworks and the __RESTful APIs__ builded with them.
+It allows requests to made from JS frontends of other apps.
 
 ## Author
 __Denis Mitrofanov__
@@ -30,13 +30,14 @@ protected $middleware = [
     ...
     \Denismitr\Laracors\Cors::class
 ];
+```
 
 Publish the config file:
 ```php
 php artisan vendor:publish  --provider="Denismitr\Laracors\LaravelCorsServiceProvider"
 ```
 
-Edit the config file to your needs.
+Edit the ```config/laracors.php``` file to your needs.
 
 ```
 Named middleware
@@ -69,6 +70,13 @@ protected $middlewareGroups = [
         'cors'
     ],
 ];
+```
+
+Middleware parameters
+```php
+Route::put('post/{id}', function ($id) {
+    //
+})->middleware('cors:get,post,put');
 ```
 
 ## Lumen
