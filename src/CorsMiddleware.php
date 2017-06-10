@@ -6,15 +6,15 @@ use Closure;
 
 class CorsMiddleware
 {
-    protected static $allowedMethods = [
+    protected $allAllowedMethods = [
         'HEAD', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'
     ];
 
-    protected static $allowedHeaders = [
+    protected $allowedHeaders = [
         'Content-Type', 'Accept', 'Authorization', 'Location', "Origin", 'Requested'
     ];
 
-    protected static $allowedOrigins = [
+    protected $allowedOrigins = [
         "/.+/"
     ];
 
@@ -28,6 +28,8 @@ class CorsMiddleware
     public function handle($request, Closure $next, $methods = 'all')
     {
         $response = $next($request);
+
+        $this->configure();
 
         if ($origin = $this->getRequestOrigin($request)) {
             $headers = [
@@ -52,7 +54,7 @@ class CorsMiddleware
     {
         $origin = $request->headers->get('Origin');
 
-        foreach (self::$allowedOrigins as $allowedOrigin) {
+        foreach ($this->allowedOrigins as $allowedOrigin) {
             if ( preg_match_all($allowedOrigin, $origin) === 1) {
                 return $origin;
             }
@@ -66,14 +68,14 @@ class CorsMiddleware
         $methods = strtoupper($methods);
 
         if ($methods === 'ALL') {
-            return implode(', ', self::$allowedMethods);
+            return implode(', ', $this->allAllowedMethods);
         }
 
         $allowedMethods = [];
         $methods = explode(',', $methods);
 
         foreach ($methods as $method) {
-            if ( in_array($method, self::$allowedMethods) ) {
+            if ( in_array($method, $this->allAllowedMethods) ) {
                 $allowedMethods[] = $method;
             }
         }
@@ -83,6 +85,21 @@ class CorsMiddleware
 
     protected function getAllowedHeaders()
     {
-        return implode(', ', self::$allowedHeaders);
+        return implode(', ', $this->allowedHeaders);
+    }
+
+    protected function configure()
+    {
+        $allowedOrigins = config('cors.allowed_origins');
+
+        $this->allowedOrigins = $allowedOrigins ?: $this->allowedOrigins;
+
+        $allAllowedMethods = config('cors.all_allowed_methods');
+
+        $this->allAllowedMethods = $allAllowedMethods ?: $this->allAllowedMethods;
+
+        $allowedHeaders = config('cors.allowed_headers');
+
+        $this->allowedHeaders = $allowedHeaders ?: $this->allowedHeaders;
     }
 }
