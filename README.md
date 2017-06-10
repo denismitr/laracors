@@ -37,7 +37,7 @@ Global middleware
 ```php
 protected $middleware = [
     ...
-    \Denismitr\Laracors\Cors::class
+    \Denismitr\Laracors\LaravelCorsServiceProvider::class
 ];
 ```
 
