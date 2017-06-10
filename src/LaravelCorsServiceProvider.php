@@ -15,11 +15,11 @@ class LaravelCorsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->publishes([
-            __DIR__ . '/config/laracors.php' => config_path('laracors.php'),
+            __DIR__ . '/../config/laracors.php' => config_path('laracors.php'),
         ]);
 
         $this->mergeConfigFrom(
-            __DIR__ . '/config/laracors.php', 'laracors'
+            __DIR__ . '/../config/laracors.php', 'laracors'
         );
     }
 }

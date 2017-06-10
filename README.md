@@ -19,6 +19,15 @@ composer require denismitr/laracors
 
 ### Laravel
 
+Add to ```config/app.php```:
+
+```php
+'providers' => [
+    ...
+    Denismitr\Laracors\Cors::class,
+],
+```
+
 Include in your `app/Http/Kernel.php` to the appropriate section
 (all requests if all your routes are API or named middleware + API middleware group to make it work for every api route
 or just named middleware):
@@ -43,23 +52,12 @@ Edit the ```config/laracors.php``` file to your needs.
 Named middleware
 ---------------
 ```php
-/**
- * The application's route middleware.
- *
- * These middleware may be assigned to groups or used individually.
- *
- * @var array
- */
+
 protected $routeMiddleware = [
     ...
-    'cors' => \Denismitr\Laracors\Cors::class,
+    'cors' => \Denismitr\Laracors\LaravelCorsServiceProvider::class,
 ];
 
-/**
- * The application's route middleware groups.
- *
- * @var array
- */
 protected $middlewareGroups = [
     'web' => [
         ...
