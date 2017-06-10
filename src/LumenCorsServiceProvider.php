@@ -4,7 +4,7 @@ namespace Denismitr\Laracors;
 
 use Illuminate\Support\ServiceProvider;
 
-class LumenServiceProvider extends ServiceProvider
+class LumenCorsServiceProvider extends ServiceProvider
 {
     /**
      * @inheritdoc

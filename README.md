@@ -82,12 +82,12 @@ Route::put('post/{id}', function ($id) {
 Add the following lines to ```bootstrap/app.php```:
 
 ```php
-$app->register('Denismitr\Laracors\LumenCorsServiceProvider');
+$app->register('\Denismitr\Laracors\LumenCorsServiceProvider');
 ```
 
 ```php
 $app->middleware([
     .....
-    'Denismitr\Laracors\LumenCorsServiceProvider',
+    '\Denismitr\Laracors\LumenCorsServiceProvider',
 ]);
 ```
